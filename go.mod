@@ -1,6 +1,6 @@
 module github.com/alewkinr/scrappy-plus
 
-go 1.18
+go 1.17
 
 require (
 	github.com/go-pkgz/notify v0.1.1
