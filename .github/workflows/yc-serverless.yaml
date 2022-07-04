@@ -26,4 +26,4 @@ jobs:
           runtime: 'golang117'
           entrypoint: 'serverless.Handler'
           memory: '256Mb'
-          environment: PARSE_URL="https://plus.yandex.ru/dacha",TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }},TELEGRAM_CHANNEL_ID="260780920"
+          environment: PARSE_URL=https://plus.yandex.ru/dacha,TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }},TELEGRAM_CHANNEL_ID=260780920
