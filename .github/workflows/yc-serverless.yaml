@@ -1,0 +1,29 @@
+# This is a basic workflow to help you get started with Actions
+name: Yandex.Cloud CI/CD pipeline
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on release publish
+  release:
+    types: [ published ]
+
+  # Triggers the workflow on push to CI/CD config branch
+  push:
+    branches:
+      - feature/actions-config
+
+jobs:
+  upload-serveless-function:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Deploy Function
+        uses: goodsmileduck/yandex-serverless-action@v1
+        with:
+          exclude: '.git/**,.github/**,.gitignore'
+          token: ${{ secrets.YC_TOKEN }}
+          function_id: ${{ secrets.YC_FUNCTION_ID }}
+          runtime: 'golang117'
+          entrypoint: 'serverless.Handler'
+          memory: '256Mb'
+          environment: PARSE_URL="https://plus.yandex.ru/dacha",TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }},TELEGRAM_CHANNEL_ID="260780920"
